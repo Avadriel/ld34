@@ -34,10 +34,10 @@ gulp.task("watch", function(){
 });
 
 gulp.task("pages", function(){
-	gulp.src("src/**/*.html").pipe(gulp.dest("/"));
+	gulp.src("src/**/*.html").pipe(gulp.dest(""));
 	gulp.src("src/res/*.png").pipe(gulp.dest("res/"));
 	gulp.src("src/res/*.json").pipe(gulp.dest("res/"));
-	gulp.src("src/**/*.ts").pipe(ts({out:"game.js"})).pipe(gulp.dest("/"));
+	gulp.src("src/**/*.ts").pipe(ts({out:"game.js"})).pipe(gulp.dest(""));
 	gulp.src("lib/**/*.js").pipe(gulp.dest("lib/"));
 })
 
