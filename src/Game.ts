@@ -5,23 +5,27 @@
 ///<reference path="Plane.ts" />
 ///<reference path="Scene.ts" />
 ///<reference path="Spritesheet.ts" />
+/// <reference path="Stage.ts" />
+/// <reference path="PlayStage.ts" />
+
 class Game {
 
 	canvas: HTMLCanvasElement;
 	gl: WebGLRenderingContext;
 	texture: WebGLTexture;
 	bufferid: WebGLBuffer;
-	plane: Plane;
-	plane2: Plane;
 	scene: Scene;
 	spritesheet: Spritesheet;
 	mvp: Float32Array;
 	shader: Shader;
 	map: Array<Plane> = new Array();
+	stage: Stage;
 
 	constructor() {
 		this.canvas = <HTMLCanvasElement>document.getElementById("stage");
 		this.gl = <WebGLRenderingContext>this.canvas.getContext("webgl");
+		this.canvas.addEventListener("mousemove", this.mouseMove);
+		this.canvas.addEventListener("click", this.mouseClick);
 	}
 
 	init = () => {
@@ -29,25 +33,21 @@ class Game {
 		this.shader = new Shader(this.gl, document.getElementById("vs").innerText, document.getElementById("fs").innerText);
 		var clearColor = Color.PURPLE;
 		this.gl.clearColor(clearColor.r, clearColor.g, clearColor.b, clearColor.a);
+		this.gl.enable(this.gl.BLEND);
+		this.gl.blendFunc(this.gl.SRC_ALPHA, this.gl.ONE_MINUS_SRC_ALPHA);
 	}
 
 	start = () => {
-		console.log("Start");
 		this.scene = new Scene(this.gl, this.shader, this.texture, 50000*3);
-		this.plane = new Plane(50, 40, 10, 32, 32, Color.WHITE, this.spritesheet.getUVFromName("dirt_0"));
-		this.plane2 = new Plane(200, 40, 10, 32, 32, Color.WHITE, this.spritesheet.getUVFromName("grass_0"));
 
-		for (var x = 0; x < (640 / 16); x++){
-			for (var y = 0; y < (480 / 16); y++){
-				this.map.push(new Plane(x * 16 + 8, y * 18 + 8, 10, 16, 16, Color.WHITE, this.spritesheet.getUVFromName("grass_0")));
-			}
-		}
+		this.stage = new PlayStage();
+		this.stage.spritesheet = this.spritesheet;
+		this.stage.init();
 
-		console.log(this.map.length)
 
 		this.loop();
 	}
-	
+
 	loadTexture = (resource) => {
 		this.texture = this.gl.createTexture();
 		this.gl.bindTexture(this.gl.TEXTURE_2D, this.texture);
@@ -59,19 +59,27 @@ class Game {
 	}
 
 	loadSpritesheet = (resource) =>{
+		console.log("Spritesheet is loaded");
 		this.spritesheet = new Spritesheet(resource);
 	}
 
 	loop = () =>{
+		this.stage.update();
+
 		this.gl.clear(this.gl.COLOR_BUFFER_BIT);
 
 		this.scene.mvp = this.mvp;
-		for (var i = 0; i < this.map.length; i++) {
-			this.scene.addPlane(this.map[i]);
-		}
-
+		this.stage.render(this.scene);
 		this.scene.render();
 
 		requestAnimationFrame(this.loop);
+	}
+
+	mouseMove = (e:Event) =>{
+		this.stage.mouseMove(e);
+	}
+
+	mouseClick = (e:Event) =>{
+		this.stage.mouseClick(e);
 	}
 }
