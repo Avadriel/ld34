@@ -1,5 +1,8 @@
 class Color {
-	
+
+	static WHITE = new Color(0xFFFFFFFF);
+	static PURPLE = new Color(0xFFFF00FF);
+
 	a: number;
 	r: number;
 	g: number;
