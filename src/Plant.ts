@@ -20,7 +20,6 @@ class Plant extends Entity {
 
 	init(){
 		this.plane = new Plane(this.x, this.y, 15, 16, 16, Color.WHITE, this.sprites[0]);
-		console.log(this.sprites);
 	}
 
 	update() {
