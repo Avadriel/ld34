@@ -23,5 +23,22 @@ class Gardener extends Entity {
 	}
 
 	update(){
+		if(this.state == GardenerState.WAITING){
+			if(this.x < 20){
+				this.move(1, 0);
+			}
+
+			if(this.x > 20){
+				this.move(-1, 0);
+			}
+
+			if(this.y < 20){
+				this.move(0, 1);
+			}
+
+			if(this.y > 20){
+				this.move(0, -1);
+			}
+		}
 	}
 }

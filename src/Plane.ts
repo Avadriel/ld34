@@ -44,6 +44,11 @@ class Plane {
 		this.v[5] = new Vertex(this.cx-this.hw, this.cy+this.hh, this.z, color.r, color.g, color.b, color.a, this.uv.u, this.uv.v2);	
 	}
 
+	setUV(uv:UV){
+		this.uv = uv;
+		this._update();
+	}
+
 	setPosition(x:number, y:number){
 		this.cx = x;
 		this.cy = y;

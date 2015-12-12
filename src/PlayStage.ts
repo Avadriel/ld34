@@ -4,8 +4,9 @@
 /// <reference path="Gardener.ts" />
 /// <reference path="JobDelegate.ts" />
 /// <reference path="PlowJob.ts" />
-
-
+/// <reference path="Plant.ts" />
+/// <reference path="EggPlant.ts" />
+/// <reference path="PlantJob.ts" />
 
 
 class PlayStage extends Stage implements JobDelegate{
@@ -16,6 +17,7 @@ class PlayStage extends Stage implements JobDelegate{
 	menubutton: Plane;
 	eggbutton: Plane;
 	mode: JobType = JobType.NONE;
+	plants: Array<Plant> = new Array();
 
 	constructor() {
 		super();
@@ -50,6 +52,10 @@ class PlayStage extends Stage implements JobDelegate{
 
 		for (var i = 0; i < this.gardeners.length; i++){
 			this.gardeners[i].update();
+		}
+
+		for (var i = 0; i < this.plants.length; i++){
+			this.plants[i].update();
 		}
 
 		for (var i = 0; i < this.jobs.length; i++) {
@@ -91,10 +97,13 @@ class PlayStage extends Stage implements JobDelegate{
 			scene.addPlane(this.tiles[i].plane);
 		}
 
+		for (var i = 0; i < this.plants.length; i++){
+			scene.addPlane(this.plants[i].plane);
+		}
+
 		for (var i = 0; i < this.gardeners.length; i++){
 			scene.addPlane(this.gardeners[i].plane);
 		}
-
 
 		scene.addPlane(this.menubutton);
 		scene.addPlane(this.eggbutton);
@@ -127,11 +136,12 @@ class PlayStage extends Stage implements JobDelegate{
 		}
 
 		if(this.mode == JobType.PLANT){
-			
+			this.jobs.push(new PlantJob(this.mouseX * 32 + 16, this.mouseY * 32 + 16, this));
+			this.mode = JobType.NONE;
 		}
 
-		if(this.mode == JobType.NONE){
-			if (this.mouseX >= (640 / 32)-3 && this.mouseY <= 0) {
+		if (this.mode == JobType.NONE) {
+			if (this.mouseX >= (640 / 32) - 3 && this.mouseY <= 0) {
 				this.mode = JobType.PLOW;
 			}
 
@@ -147,6 +157,12 @@ class PlayStage extends Stage implements JobDelegate{
 		if(type == JobType.PLOW){
 			this.tiles[nx + ny * (640 / 32)].plane.setColor(Color.WHITE);
 			this.tiles[nx + ny * (640 / 32)].build = false;
+		}
+
+		if(type == JobType.PLANT){
+			var plant = new EggPlant(this.spritesheet, nx * 32 + 16, ny * 32 + 16);
+			this.plants.push(plant);
+			console.log(this.plants.length)
 		}
 	}
 
