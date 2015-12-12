@@ -15,10 +15,9 @@ class Game {
 	plane2: Plane;
 	scene: Scene;
 	spritesheet: Spritesheet;
-	
 	mvp: Float32Array;
 	shader: Shader;
-
+	map: Array<Plane> = new Array();
 
 	constructor() {
 		this.canvas = <HTMLCanvasElement>document.getElementById("stage");
@@ -34,9 +33,18 @@ class Game {
 
 	start = () => {
 		console.log("Start");
-		this.scene = new Scene(this.gl, this.shader, this.texture, 1000*3);
+		this.scene = new Scene(this.gl, this.shader, this.texture, 50000*3);
 		this.plane = new Plane(50, 40, 10, 32, 32, Color.WHITE, this.spritesheet.getUVFromName("dirt_0"));
 		this.plane2 = new Plane(200, 40, 10, 32, 32, Color.WHITE, this.spritesheet.getUVFromName("grass_0"));
+
+		for (var x = 0; x < (640 / 16); x++){
+			for (var y = 0; y < (480 / 16); y++){
+				this.map.push(new Plane(x * 16 + 8, y * 18 + 8, 10, 16, 16, Color.WHITE, this.spritesheet.getUVFromName("grass_0")));
+			}
+		}
+
+		console.log(this.map.length)
+
 		this.loop();
 	}
 	
@@ -54,15 +62,14 @@ class Game {
 		this.spritesheet = new Spritesheet(resource);
 	}
 
-
 	loop = () =>{
 		this.gl.clear(this.gl.COLOR_BUFFER_BIT);
 
 		this.scene.mvp = this.mvp;
-		this.scene.addPlane(this.plane);
-		this.scene.addPlane(this.plane2);
+		for (var i = 0; i < this.map.length; i++) {
+			this.scene.addPlane(this.map[i]);
+		}
 
-		
 		this.scene.render();
 
 		requestAnimationFrame(this.loop);
