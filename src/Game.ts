@@ -11,6 +11,7 @@ class Game {
 	texture: WebGLTexture;
 	bufferid: WebGLBuffer;
 	plane: Plane;
+	plane2: Plane;
 	scene: Scene;
 	
 	mvp: Float32Array;
@@ -27,8 +28,8 @@ class Game {
 		this.shader = new Shader(this.gl, document.getElementById("vs").innerText, document.getElementById("fs").innerText);
 		var clearColor = Color.PURPLE;
 		this.gl.clearColor(clearColor.r, clearColor.g, clearColor.b, clearColor.a);
-		this.plane = new Plane(16, 16, 10, 32, 32, Color.WHITE, UV.STDUV);
-
+		this.plane = new Plane(32, 32, 10, 16, 16, Color.WHITE, UV.STDUV);
+		this.plane2 = new Plane(200, 40, 10, 32, 32, Color.WHITE, UV.STDUV);
 	}
 
 	start = () => {
@@ -53,6 +54,7 @@ class Game {
 
 		this.scene.mvp = this.mvp;
 		this.scene.addPlane(this.plane);
+		this.scene.addPlane(this.plane2);
 		this.scene.render();
 
 		requestAnimationFrame(this.loop);
