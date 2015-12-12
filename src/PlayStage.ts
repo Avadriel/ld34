@@ -1,9 +1,13 @@
 /// <reference path="Stage.ts" />
 /// <reference path="Tile.ts" />
+/// <reference path="Job.ts" />
+/// <reference path="Gardener.ts" />
 
 
 class PlayStage extends Stage {
 
+	gardeners: Array<Gardener> = new Array();
+	jobs: Array<Job> = new Array();
 	tiles: Array<Tile> = new Array();
 	button_dirt: Plane;
 
@@ -20,6 +24,7 @@ class PlayStage extends Stage {
 			}
 		}
 
+		this.gardeners.push(new Gardener(20, 20, this.jobs, this.spritesheet));
 		
 
 		this.button_dirt = new Plane(400, 480 - 32, 11, 16, 16, Color.WHITE, this.spritesheet.getUVFromName("dbutton"));
@@ -34,12 +39,21 @@ class PlayStage extends Stage {
 		if(tohighlight){
 			tohighlight.plane.setColor(Color.GREY);
 		}
+
+		for (var i = 0; i < this.gardeners.length; i++){
+			this.gardeners[i].update(this.jobs);
+		}
 	}
 
 	render(scene: Scene) {
 		for (var i = 0; i < this.tiles.length; i++) {
 			scene.addPlane(this.tiles[i].plane);
 		}
+
+		for (var i = 0; i < this.gardeners.length; i++){
+			scene.addPlane(this.gardeners[i].plane);
+		}
+
 
 		scene.addPlane(this.button_dirt);
 	}
@@ -57,7 +71,8 @@ class PlayStage extends Stage {
 	}
 
 	mouseClick(e:MouseEvent){
-		
+		this.jobs.push(new Job(this.mouseX*32+16, this.mouseY*32+16, JobType.PLOW));
+		console.log(this.jobs.length);
 	}
 
 
