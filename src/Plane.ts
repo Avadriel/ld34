@@ -33,4 +33,30 @@ class Plane {
 		this.v[4] = new Vertex(cx+hw, cy+hh, z, color.r, color.g, color.b, color.a, uv.u2, uv.v2);
 		this.v[5] = new Vertex(cx-hw, cy+hh, z, color.r, color.g, color.b, color.a, uv.u, uv.v2);
 	}
+
+	_update(){
+		var color = this.color;
+		this.v[0] = new Vertex(this.cx-this.hw, this.cy-this.hh, this.z, color.r, color.g, color.b, color.a, this.uv.u, this.uv.v);
+		this.v[1] = new Vertex(this.cx-this.hw, this.cy+this.hh, this.z, color.r, color.g, color.b, color.a, this.uv.u, this.uv.v2);
+		this.v[2] = new Vertex(this.cx+this.hw, this.cy-this.hh, this.z, color.r, color.g, color.b, color.a, this.uv.u2, this.uv.v);
+		this.v[3] = new Vertex(this.cx+this.hw, this.cy-this.hh, this.z, color.r, color.g, color.b, color.a, this.uv.u2, this.uv.v);
+		this.v[4] = new Vertex(this.cx+this.hw, this.cy+this.hh, this.z, color.r, color.g, color.b, color.a, this.uv.u2, this.uv.v2);
+		this.v[5] = new Vertex(this.cx-this.hw, this.cy+this.hh, this.z, color.r, color.g, color.b, color.a, this.uv.u, this.uv.v2);	
+	}
+
+	setUV(uv:UV){
+		this.uv = uv;
+		this._update();
+	}
+
+	setPosition(x:number, y:number){
+		this.cx = x;
+		this.cy = y;
+		this._update();
+	}
+
+	setColor(color:Color){
+		this.color = color;
+		this._update();
+	}
 }
