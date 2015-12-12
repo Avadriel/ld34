@@ -14,6 +14,10 @@ gulp.task("ts", function(){
 	gulp.src("src/**/*.ts").pipe(ts({out:"game.js"})).pipe(gulp.dest("tmp/")).pipe(connect.reload());
 });
 
+gulp.task("lib", function(){
+	gulp.src("lib/**/*.js").pipe(gulp.dest("tmp/lib")).pipe(connect.reload());
+})
+
 gulp.task("serve", function(){
 	connect.server({
 		root: "tmp",
@@ -25,6 +29,7 @@ gulp.task("watch", function(){
 	gulp.watch(["src/**/*.html"], ["html"]);
 	gulp.watch(["src/**/*.ts"], ["ts"]);
 	gulp.watch(["src/res/*.png"], ["img"]);
+	gulp.watch(["lib/**/*.js"], ["lib"]);
 });
 
-gulp.task("default", ["html", "ts", "img", "watch", "serve"]);
+gulp.task("default", ["html", "ts", "img", "lib", "watch", "serve"]);
