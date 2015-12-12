@@ -4,6 +4,7 @@
 ///<reference path="UV.ts" />
 ///<reference path="Plane.ts" />
 ///<reference path="Scene.ts" />
+///<reference path="Spritesheet.ts" />
 class Game {
 
 	canvas: HTMLCanvasElement;
@@ -13,6 +14,7 @@ class Game {
 	plane: Plane;
 	plane2: Plane;
 	scene: Scene;
+	spritesheet: Spritesheet;
 	
 	mvp: Float32Array;
 	shader: Shader;
@@ -28,16 +30,16 @@ class Game {
 		this.shader = new Shader(this.gl, document.getElementById("vs").innerText, document.getElementById("fs").innerText);
 		var clearColor = Color.PURPLE;
 		this.gl.clearColor(clearColor.r, clearColor.g, clearColor.b, clearColor.a);
-		this.plane = new Plane(32, 32, 10, 16, 16, Color.WHITE, UV.STDUV);
-		this.plane2 = new Plane(200, 40, 10, 32, 32, Color.WHITE, UV.STDUV);
 	}
 
 	start = () => {
 		console.log("Start");
 		this.scene = new Scene(this.gl, this.shader, this.texture, 1000*3);
+		this.plane = new Plane(50, 40, 10, 32, 32, Color.WHITE, this.spritesheet.getUVFromName("dirt_0"));
+		this.plane2 = new Plane(200, 40, 10, 32, 32, Color.WHITE, this.spritesheet.getUVFromName("grass_0"));
 		this.loop();
 	}
-
+	
 	loadTexture = (resource) => {
 		this.texture = this.gl.createTexture();
 		this.gl.bindTexture(this.gl.TEXTURE_2D, this.texture);
@@ -48,6 +50,10 @@ class Game {
 		console.log("Texture is loaded");
 	}
 
+	loadSpritesheet = (resource) =>{
+		this.spritesheet = new Spritesheet(resource);
+	}
+
 
 	loop = () =>{
 		this.gl.clear(this.gl.COLOR_BUFFER_BIT);
@@ -55,6 +61,8 @@ class Game {
 		this.scene.mvp = this.mvp;
 		this.scene.addPlane(this.plane);
 		this.scene.addPlane(this.plane2);
+
+		
 		this.scene.render();
 
 		requestAnimationFrame(this.loop);

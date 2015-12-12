@@ -8,6 +8,7 @@ gulp.task("html", function(){
 
 gulp.task("img", function(){
 	gulp.src("src/res/*.png").pipe(gulp.dest("tmp/res/")).pipe(connect.reload());
+	gulp.src("src/res/*.json").pipe(gulp.dest("tmp/res/")).pipe(connect.reload());
 });
 
 gulp.task("ts", function(){

@@ -2,7 +2,7 @@
 
 "dirt_0":
 {
-	"frame": {"x":1,"y":1,"w":16,"h":16},
+	"frame": {"x":0,"y":0,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -11,7 +11,7 @@
 },
 "grass_0":
 {
-	"frame": {"x":1,"y":19,"w":16,"h":16},
+	"frame": {"x":0,"y":16,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -23,8 +23,8 @@
 	"version": "1.0",
 	"image": "ld34.png",
 	"format": "RGBA8888",
-	"size": {"w":32,"h":64},
+	"size": {"w":16,"h":32},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:52f034dafa12341b433ae8082beadbc0:c1d66255d88ed7533a6d8976ae979542:bb279eef75da4282bcac42cc68301ce2$"
+	"smartupdate": "$TexturePacker:SmartUpdate:6a7a5982cff7407a767c8d92a1bd9aa3:c1d66255d88ed7533a6d8976ae979542:bb279eef75da4282bcac42cc68301ce2$"
 }
 }

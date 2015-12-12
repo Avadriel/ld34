@@ -30,7 +30,7 @@ class Plane {
 		this.v[1] = new Vertex(cx-hw, cy+hh, z, color.r, color.g, color.b, color.a, uv.u, uv.v2);
 		this.v[2] = new Vertex(cx+hw, cy-hh, z, color.r, color.g, color.b, color.a, uv.u2, uv.v);
 		this.v[3] = new Vertex(cx+hw, cy-hh, z, color.r, color.g, color.b, color.a, uv.u2, uv.v);
-		this.v[4] = new Vertex(cx+hw, cy+hh, z, color.r, color.g, color.b, color.a, uv.u2, uv.u2);
-		this.v[5] = new Vertex(cx-hw, cy+hh, z, color.r, color.g, color.b, color.a, uv.u, uv.u2);
+		this.v[4] = new Vertex(cx+hw, cy+hh, z, color.r, color.g, color.b, color.a, uv.u2, uv.v2);
+		this.v[5] = new Vertex(cx-hw, cy+hh, z, color.r, color.g, color.b, color.a, uv.u, uv.v2);
 	}
 }
