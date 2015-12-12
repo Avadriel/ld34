@@ -2,7 +2,7 @@
 
 "dbutton":
 {
-	"frame": {"x":1,"y":1,"w":16,"h":16},
+	"frame": {"x":1,"y":52,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -11,7 +11,7 @@
 },
 "dirt_0":
 {
-	"frame": {"x":1,"y":18,"w":16,"h":16},
+	"frame": {"x":18,"y":52,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -20,34 +20,61 @@
 },
 "egg":
 {
-	"frame": {"x":1,"y":35,"w":16,"h":16},
+	"frame": {"x":35,"y":52,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
 	"sourceSize": {"w":16,"h":16},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"eggbutton":
+{
+	"frame": {"x":1,"y":1,"w":48,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":16},
+	"sourceSize": {"w":48,"h":16},
 	"pivot": {"x":0.5,"y":0.5}
 },
 "grass_0":
 {
-	"frame": {"x":18,"y":1,"w":16,"h":16},
+	"frame": {"x":1,"y":69,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
 	"sourceSize": {"w":16,"h":16},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"menubutton":
+{
+	"frame": {"x":1,"y":18,"w":48,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":16},
+	"sourceSize": {"w":48,"h":16},
 	"pivot": {"x":0.5,"y":0.5}
 },
 "plant":
 {
-	"frame": {"x":35,"y":1,"w":16,"h":16},
+	"frame": {"x":1,"y":86,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
 	"sourceSize": {"w":16,"h":16},
 	"pivot": {"x":0.5,"y":0.5}
 },
+"plowbutton":
+{
+	"frame": {"x":1,"y":35,"w":48,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":16},
+	"sourceSize": {"w":48,"h":16},
+	"pivot": {"x":0.5,"y":0.5}
+},
 "worker":
 {
-	"frame": {"x":18,"y":18,"w":16,"h":16},
+	"frame": {"x":1,"y":103,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -59,8 +86,8 @@
 	"version": "1.0",
 	"image": "ld34.png",
 	"format": "RGBA8888",
-	"size": {"w":64,"h":64},
+	"size": {"w":64,"h":128},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:1ecf57a06e268360443f75a5a03226f5:4d72371ac624991aa4c0e95734e208ac:bb279eef75da4282bcac42cc68301ce2$"
+	"smartupdate": "$TexturePacker:SmartUpdate:5f554446d85beb109e61725c64fcbc5d:c7f3dbc4bc5dab3ddaeeee8a785330e2:bb279eef75da4282bcac42cc68301ce2$"
 }
 }

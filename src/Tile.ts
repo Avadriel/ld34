@@ -3,6 +3,7 @@
 
 
 class Tile extends Entity {
+	build: boolean = false;
 	
 	constructor(spritesheet:Spritesheet, name:string, x:number, y:number) {
 		super(spritesheet);
