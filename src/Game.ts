@@ -75,11 +75,11 @@ class Game {
 		requestAnimationFrame(this.loop);
 	}
 
-	mouseMove = (e:Event) =>{
+	mouseMove = (e:MouseEvent) =>{
 		this.stage.mouseMove(e);
 	}
 
-	mouseClick = (e:Event) =>{
+	mouseClick = (e:MouseEvent) =>{
 		this.stage.mouseClick(e);
 	}
 }

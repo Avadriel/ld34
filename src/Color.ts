@@ -2,6 +2,7 @@ class Color {
 
 	static WHITE = new Color(0xFFFFFFFF);
 	static PURPLE = new Color(0xFFFF00FF);
+	static GREY = new Color(0xFF888888);
 
 	a: number;
 	r: number;
