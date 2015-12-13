@@ -13,7 +13,7 @@ class Gardener extends Entity {
 		super(spritesheet);
 		this.x = x;
 		this.y = y;
-		this.plane = new Plane(x, y, 11, 16, 16, Color.WHITE, spritesheet.getUVFromName("worker"));
+		this.plane = new Plane(x, y, 11, 16, 16, Color.WHITE, spritesheet.getUVFromName("gardener_idle_0"));
 	}
 
 	move(vx, vy){
