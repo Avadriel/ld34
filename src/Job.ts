@@ -4,14 +4,11 @@ enum JobStatus {WAITING, INPROGRESS, DONE}
 
 class Job {
 
-	targetX: number;
-	targetY: number;
 	status: JobStatus;
 	gardener: Gardener;
+	jobs: Array<Job> = new Array();
 
-	constructor(targetX, targetY) {
-		this.targetX = targetX;
-		this.targetY = targetY;
+	constructor() {
 		this.status = JobStatus.WAITING;
 	}
 

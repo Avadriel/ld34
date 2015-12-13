@@ -1,39 +1,38 @@
 /// <reference path="Job.ts" />
 /// <reference path="JobDelegate.ts" />
+/// <reference path="MoveToJob.ts" />
+/// <reference path="WaitJob.ts" />
+
 
 class PlantJob extends Job {
 
 	delegate: JobDelegate;
-	wait: number = 0;
-	
+	jobIndex: number = 0;
+	targetX: number;
+	targetY: number;
+
 	constructor(targetX, targetY, delegate:JobDelegate){
-		super(targetX, targetY);
+		super();
+		this.jobs = [new MoveToJob( targetX, targetY), new WaitJob(120)];
 		this.delegate = delegate;
+		this.targetX = targetX;
+		this.targetY = targetY;
 	}
-
-	update(){
-		if(this.gardener.x > this.targetX){
-			this.gardener.move(-1, 0);
-		}
-
-		if(this.gardener.x < this.targetX){
-			this.gardener.move(1, 0);
-		}
-
-		if(this.gardener.y <  this.targetY){
-			this.gardener.move(0, 1);
-		}
-
-		if(this.gardener.y > this.targetY){
-			this.gardener.move(0, -1);
-		}
-
-		if(this.gardener.x == this.targetX && this.gardener.y == this.targetY){
-			if(this.wait >= 120){
+	update (){
+		//If all jobs are finished
+		if(this.jobIndex >= this.jobs.length){
 				this.delegate.finishedJob(this.targetX, this.targetY, JobType.PLANT);
 				this.finished();
+		}else{
+			var actualJob = this.jobs[this.jobIndex];
+			console.log(actualJob);
+			actualJob.gardener = this.gardener;
+			actualJob.update();
+
+			if(actualJob.status == JobStatus.DONE){
+				this.jobIndex++;
 			}
-			this.wait++;
 		}
+		
 	}
 }
