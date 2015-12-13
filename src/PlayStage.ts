@@ -8,6 +8,8 @@
 /// <reference path="EggPlant.ts" />
 /// <reference path="PlantJob.ts" />
 /// <reference path="Schedule.ts" />
+/// <reference path="ShovelButton.ts" />
+
 
 
 
@@ -20,6 +22,8 @@ class PlayStage extends Stage implements JobDelegate{
 	mode: JobType = JobType.NONE;
 	plants: Array<Plant> = new Array();
 	schedule: Schedule;
+	shovel: ShovelButton;
+
 
 	constructor() {
 		super();
@@ -34,6 +38,8 @@ class PlayStage extends Stage implements JobDelegate{
 			}
 		}
 
+
+		this.shovel = new ShovelButton(50, 50, this.spritesheet);
 		this.gardeners.push(new Gardener(16, 16, this.spritesheet));
 		this.gardeners.push(new Gardener(16, 16, this.spritesheet));
 
@@ -83,6 +89,8 @@ class PlayStage extends Stage implements JobDelegate{
 			this.eggbutton.setColor(Color.GREY);
 		}
 
+		this.shovel.update();
+
 	}
 
 	render(scene: Scene) {
@@ -98,6 +106,7 @@ class PlayStage extends Stage implements JobDelegate{
 			scene.addPlane(this.gardeners[i].plane);
 		}
 
+		scene.addPlane(this.shovel.plane);
 		scene.addPlane(this.menubutton);
 		scene.addPlane(this.eggbutton);
 	}

@@ -2,7 +2,7 @@
 
 "dbutton":
 {
-	"frame": {"x":1,"y":52,"w":16,"h":16},
+	"frame": {"x":99,"y":1,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -11,7 +11,7 @@
 },
 "dirt_0":
 {
-	"frame": {"x":18,"y":52,"w":16,"h":16},
+	"frame": {"x":83,"y":18,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -20,7 +20,7 @@
 },
 "egg":
 {
-	"frame": {"x":35,"y":52,"w":16,"h":16},
+	"frame": {"x":100,"y":18,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -29,7 +29,7 @@
 },
 "egg_0":
 {
-	"frame": {"x":1,"y":69,"w":16,"h":16},
+	"frame": {"x":34,"y":35,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -38,7 +38,7 @@
 },
 "egg_1":
 {
-	"frame": {"x":1,"y":86,"w":16,"h":16},
+	"frame": {"x":34,"y":52,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -47,7 +47,7 @@
 },
 "egg_2":
 {
-	"frame": {"x":1,"y":103,"w":16,"h":16},
+	"frame": {"x":34,"y":69,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -65,7 +65,7 @@
 },
 "gardener_idle_0":
 {
-	"frame": {"x":18,"y":69,"w":16,"h":16},
+	"frame": {"x":34,"y":86,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -74,7 +74,7 @@
 },
 "gardener_idle_1":
 {
-	"frame": {"x":35,"y":69,"w":16,"h":16},
+	"frame": {"x":34,"y":103,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -83,7 +83,7 @@
 },
 "gardener_idle_2":
 {
-	"frame": {"x":18,"y":86,"w":16,"h":16},
+	"frame": {"x":51,"y":35,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -92,7 +92,7 @@
 },
 "grass_0":
 {
-	"frame": {"x":18,"y":103,"w":16,"h":16},
+	"frame": {"x":68,"y":35,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -101,7 +101,7 @@
 },
 "menubutton":
 {
-	"frame": {"x":1,"y":18,"w":48,"h":16},
+	"frame": {"x":50,"y":1,"w":48,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":16},
@@ -110,7 +110,7 @@
 },
 "plant":
 {
-	"frame": {"x":35,"y":86,"w":16,"h":16},
+	"frame": {"x":85,"y":35,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -119,16 +119,43 @@
 },
 "plowbutton":
 {
-	"frame": {"x":1,"y":35,"w":48,"h":16},
+	"frame": {"x":34,"y":18,"w":48,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":16},
 	"sourceSize": {"w":48,"h":16},
 	"pivot": {"x":0.5,"y":0.5}
 },
+"shovel_hover_0":
+{
+	"frame": {"x":1,"y":18,"w":32,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"sourceSize": {"w":32,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"shovel_hover_1":
+{
+	"frame": {"x":1,"y":51,"w":32,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"sourceSize": {"w":32,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"shovel_hover_2":
+{
+	"frame": {"x":1,"y":84,"w":32,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"sourceSize": {"w":32,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
 "worker":
 {
-	"frame": {"x":35,"y":103,"w":16,"h":16},
+	"frame": {"x":102,"y":35,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -140,8 +167,8 @@
 	"version": "1.0",
 	"image": "ld34.png",
 	"format": "RGBA8888",
-	"size": {"w":64,"h":128},
+	"size": {"w":128,"h":128},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:f54f8288950af37ca64267f6e42b80e3:4d70d6c5657f73d717922e6ab4ddac3c:bb279eef75da4282bcac42cc68301ce2$"
+	"smartupdate": "$TexturePacker:SmartUpdate:34687b0f5798ad2585c8c9dad955e13b:2f0dd5c4b21c0dfbdaa8c183367638e3:bb279eef75da4282bcac42cc68301ce2$"
 }
 }
