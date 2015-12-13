@@ -17,8 +17,6 @@ class PlayStage extends Stage implements JobDelegate{
 
 	gardeners: Array<Gardener> = new Array();
 	tiles: Array<Tile> = new Array();
-	menubutton: Plane;
-	eggbutton: Plane;
 	mode: JobType = JobType.NONE;
 	plants: Array<Plant> = new Array();
 	schedule: Schedule;
@@ -39,12 +37,9 @@ class PlayStage extends Stage implements JobDelegate{
 		}
 
 
-		this.shovel = new ShovelButton(50, 50, this.spritesheet);
+		this.shovel = new ShovelButton(640-16, 16, this.spritesheet);
 		this.gardeners.push(new Gardener(16, 16, this.spritesheet));
 		this.gardeners.push(new Gardener(16, 16, this.spritesheet));
-
-		this.menubutton = new Plane(640 - 48, 16, 11, 48, 16, Color.WHITE, this.spritesheet.getUVFromName("plowbutton"));
-		this.eggbutton = new Plane(640 - 48, 48, 11, 48, 16, Color.WHITE, this.spritesheet.getUVFromName("eggbutton"));
 	}
 
 	update() {
@@ -79,7 +74,14 @@ class PlayStage extends Stage implements JobDelegate{
 
 		this.schedule.update();
 
-		this.menubutton.setColor(Color.WHITE);
+
+		//Hover button
+		this.shovel.plane.setColor(Color.WHITE);
+		if (this.mouseX >= (640 / 32) - 1 && this.mouseY == 0 || this.mode == JobType.PLOW){
+			this.shovel.plane.setColor(Color.GREY);
+		}
+
+		/*this.menubutton.setColor(Color.WHITE);
 		this.eggbutton.setColor(Color.WHITE);
 		if (this.mouseX >= (640 / 32)-3 && this.mouseY == 0 || this.mode == JobType.PLOW) {
 			this.menubutton.setColor(Color.GREY);
@@ -87,7 +89,7 @@ class PlayStage extends Stage implements JobDelegate{
 
 		if (this.mouseX >= (640 / 32)-3 && this.mouseY == 1 || this.mode == JobType.PLANT) {
 			this.eggbutton.setColor(Color.GREY);
-		}
+		}*/
 
 		this.shovel.update();
 
@@ -107,8 +109,6 @@ class PlayStage extends Stage implements JobDelegate{
 		}
 
 		scene.addPlane(this.shovel.plane);
-		scene.addPlane(this.menubutton);
-		scene.addPlane(this.eggbutton);
 	}
 
 	mouseX: number = 0;
@@ -137,19 +137,8 @@ class PlayStage extends Stage implements JobDelegate{
 			this.mode = JobType.NONE;
 		}
 
-		if (this.mode == JobType.PLANT){
-			this.schedule.addJob(new PlantJob(this.mouseX * 32 + 16, this.mouseY * 32 + 16, this));
-			this.mode = JobType.NONE;
-		}
-
-		if (this.mode == JobType.NONE) {
-			if (this.mouseX >= (640 / 32) - 3 && this.mouseY <= 0) {
-				this.mode = JobType.PLOW;
-			}
-
-			if (this.mouseX >= (640 / 32)-3 && this.mouseY == 1 || this.mode == JobType.PLANT) {
-				this.mode = JobType.PLANT;
-			}
+		if (this.mouseX >= (640 / 32) - 1 && this.mouseY == 0 && this.mode == JobType.NONE){
+			this.mode = JobType.PLOW;
 		}
 	}
 

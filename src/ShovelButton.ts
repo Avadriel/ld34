@@ -17,7 +17,7 @@ class ShovelButton extends Entity {
 			spritesheet.getUVFromName("shovel_hover_1"),
 			spritesheet.getUVFromName("shovel_hover_2")
 		];
-		this.plane = new Plane(x, y, 20, 32, 32, Color.WHITE, this.frames[0]);
+		this.plane = new Plane(x, y, 20, 16, 16, Color.WHITE, this.frames[0]);
 	}
 
 	update(){
