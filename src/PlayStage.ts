@@ -7,23 +7,26 @@
 /// <reference path="Plant.ts" />
 /// <reference path="EggPlant.ts" />
 /// <reference path="PlantJob.ts" />
+/// <reference path="Schedule.ts" />
+
 
 
 class PlayStage extends Stage implements JobDelegate{
 
 	gardeners: Array<Gardener> = new Array();
-	jobs: Array<Job> = new Array();
 	tiles: Array<Tile> = new Array();
 	menubutton: Plane;
 	eggbutton: Plane;
 	mode: JobType = JobType.NONE;
 	plants: Array<Plant> = new Array();
+	schedule: Schedule;
 
 	constructor() {
 		super();
 	}
 
 	init(){
+		this.schedule = new Schedule();
 		//init map
 		for (var y = 0; y < (480 / 32); y++){
 			for (var x = 0; x < (640 / 32); x++){
@@ -58,27 +61,17 @@ class PlayStage extends Stage implements JobDelegate{
 			this.plants[i].update();
 		}
 
-		for (var i = 0; i < this.jobs.length; i++) {
-			var job = this.jobs[i];
-			if (job.status == JobStatus.WAITING) {
-				for (var j = 0; j < this.gardeners.length; j++) {
-					var gardener = this.gardeners[j];
-					if (gardener.state == GardenerState.WAITING) {
-						job.assignGardener(gardener);
-						return;
+		for (var j = 0; j < this.gardeners.length; j++) {
+				var gardener = this.gardeners[j];
+				if (gardener.state == GardenerState.WAITING) {
+					var jobToAssign = this.schedule.findJob();
+					if(jobToAssign !== null){
+						jobToAssign.assignGardener(gardener);
 					}
-				}
-			}
-
-			if(job.status == JobStatus.DONE){
-				this.jobs.splice(i, 1);
-				i--;
-			}
-
-			if(job.status == JobStatus.INPROGRESS){
-				job.update();
 			}
 		}
+
+		this.schedule.update();
 
 		this.menubutton.setColor(Color.WHITE);
 		this.eggbutton.setColor(Color.WHITE);
@@ -131,12 +124,12 @@ class PlayStage extends Stage implements JobDelegate{
 			newtile.plane.setColor(Color.GREY);
 			newtile.build = true;
 			this.tiles[nx + ny * (640 / 32)] = newtile;
-			this.jobs.push(new PlowJob(this.mouseX * 32 + 16, this.mouseY * 32 + 16, this));
+			this.schedule.addJob(new PlowJob(this.mouseX * 32 + 16, this.mouseY * 32 + 16, this));
 			this.mode = JobType.NONE;
 		}
 
-		if(this.mode == JobType.PLANT){
-			this.jobs.push(new PlantJob(this.mouseX * 32 + 16, this.mouseY * 32 + 16, this));
+		if (this.mode == JobType.PLANT){
+			this.schedule.addJob(new PlantJob(this.mouseX * 32 + 16, this.mouseY * 32 + 16, this));
 			this.mode = JobType.NONE;
 		}
 
