@@ -26,6 +26,12 @@ class Plant extends Entity {
 		this.plane = new Plane(this.x, this.y, 15, 16, 16, Color.WHITE, this.sprites[0]);
 	}
 
+	reset(){
+		this.life = 0;
+		this.spriteIndex = 0;
+		this.grown = false;
+	}
+
 	update() {
 		this.life++;
 		if ((this.life % this.growTime) == 0 && !this.grown) {

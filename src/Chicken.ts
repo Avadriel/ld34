@@ -1,6 +1,6 @@
-/// <reference path="Entity.ts" />
+/// <reference path="Animal.ts" />
 
-class Chicken extends Entity {
+class Chicken extends Animal {
 	
 	plane: Plane;
 	frames: Array<UV>;

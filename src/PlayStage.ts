@@ -10,6 +10,7 @@
 /// <reference path="Schedule.ts" />
 /// <reference path="ShovelButton.ts" />
 /// <reference path="Hud.ts" />
+/// <reference path="Slaughter.ts" />
 
 
 class PlayStage extends Stage implements JobDelegate{
@@ -24,8 +25,9 @@ class PlayStage extends Stage implements JobDelegate{
 	hud: Hud;
 	focusX: number;
 	focusY: number;
+	slaughter: Slaughter;
 
-		constructor() {
+	constructor() {
 		super();
 	}
 
@@ -41,6 +43,7 @@ class PlayStage extends Stage implements JobDelegate{
 		}
 
 		this.hud = new Hud(this, this.spritesheet);
+		this.slaughter = new Slaughter(this.spritesheet, 640 - 16, 16);
 		
 		this.gardeners.push(new Gardener(16, 16, this.spritesheet));
 		this.gardeners.push(new Gardener(16, 16, this.spritesheet));
@@ -88,6 +91,8 @@ class PlayStage extends Stage implements JobDelegate{
 		}
 
 		this.hud.update();
+
+		this.slaughter.update();
 	}
 
 	render(scene: Scene) {
@@ -96,14 +101,16 @@ class PlayStage extends Stage implements JobDelegate{
 		}
 
 		for (var i = 0; i < this.plants.length; i++){
-			scene.addPlane(this.plants[i].plane);
 			this.plants[i].render(scene);
 		}
 
+		this.slaughter.render(scene);
+
 		for (var i = 0; i < this.gardeners.length; i++){
-			scene.addPlane(this.gardeners[i].plane);
+			this.gardeners[i].render(scene);
 		}
 
+		
 		this.hud.render(scene);
 	}
 
@@ -145,7 +152,7 @@ class PlayStage extends Stage implements JobDelegate{
 		}
 
 		//if tile is pressed
-		if(nx <= (480/32-3)){
+		if(ny <= (480/32-3)){
 			var tileInfo = this.infoLookup[nx + ny * (640 / 32)];
 			this.hud.mode = HudMode.NORMAL;
 			this.hud.resetActionButtons();
@@ -169,7 +176,7 @@ class PlayStage extends Stage implements JobDelegate{
 		}
 
 		if (type == JobType.PLANT) {
-			var plant = new EggPlant(this.schedule,this.spritesheet, nx * 32 + 16, ny * 32 + 16);
+			var plant = new EggPlant(this.schedule,this.spritesheet, nx * 32 + 16, ny * 32 + 16, this.slaughter);
 			this.plants.push(plant);
 		}
 	}
@@ -181,6 +188,8 @@ class PlayStage extends Stage implements JobDelegate{
 
 		if(type == HudAction.PLANTEGG){
 			this.schedule.addJob(new PlantJob(x, y, this));
+			this.hud.mode = HudMode.NORMAL;
+			this.hud.resetActionButtons();
 		}
 	}
 

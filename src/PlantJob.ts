@@ -18,6 +18,7 @@ class PlantJob extends Job {
 		this.targetX = targetX;
 		this.targetY = targetY;
 	}
+	
 	update (){
 		//If all jobs are finished
 		if(this.jobIndex >= this.jobs.length){
@@ -25,7 +26,6 @@ class PlantJob extends Job {
 				this.finished();
 		}else{
 			var actualJob = this.jobs[this.jobIndex];
-			console.log(actualJob);
 			actualJob.gardener = this.gardener;
 			actualJob.update();
 

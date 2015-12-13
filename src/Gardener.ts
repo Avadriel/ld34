@@ -1,4 +1,8 @@
 /// <reference path="Entity.ts" />
+/// <reference path="Scene.ts" />
+/// <reference path="Animal.ts" />
+
+
 
 enum GardenerState{WAITING, WORKING}
 
@@ -8,6 +12,7 @@ class Gardener extends Entity {
 	speed: number = 1;
 	x: number = 0;
 	y: number = 0;
+	front: Animal;
 
 	constructor(x, y, spritesheet:Spritesheet) {
 		super(spritesheet);
@@ -20,10 +25,20 @@ class Gardener extends Entity {
 		this.x += this.speed * vx;
 		this.y += this.speed * vy;
 		this.plane.setPosition(this.x, this.y);
+		if(this.front != null){
+			this.front.plane.setPosition(this.x, this.y);
+		}
 	}
 
-	update(){
-		if(this.state == GardenerState.WAITING){
+	render(scene:Scene){
+		scene.addPlane(this.plane);
+		if(this.front != null){
+			scene.addPlane(this.front.plane);
+		}
+	}
+
+	update() {
+		if (this.state == GardenerState.WAITING){
 			if(this.x < 20){
 				this.move(1, 0);
 			}

@@ -1,5 +1,14 @@
 {"frames": {
 
+"blood":
+{
+	"frame": {"x":1,"y":117,"w":8,"h":8},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":8},
+	"sourceSize": {"w":8,"h":8},
+	"pivot": {"x":0.5,"y":0.5}
+},
 "chicken_idle_0":
 {
 	"frame": {"x":100,"y":1,"w":16,"h":16},
@@ -74,7 +83,7 @@
 },
 "eggparticle":
 {
-	"frame": {"x":1,"y":117,"w":8,"h":8},
+	"frame": {"x":10,"y":117,"w":8,"h":8},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":8},
@@ -171,9 +180,63 @@
 	"sourceSize": {"w":32,"h":32},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"white":
+"slaugher_open_0":
 {
 	"frame": {"x":34,"y":102,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"slaugher_open_1":
+{
+	"frame": {"x":51,"y":52,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"slaugher_open_2":
+{
+	"frame": {"x":51,"y":69,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"slaugher_open_3":
+{
+	"frame": {"x":51,"y":86,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"slaugher_open_4":
+{
+	"frame": {"x":34,"y":102,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"slaugher_open_5":
+{
+	"frame": {"x":34,"y":102,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"white":
+{
+	"frame": {"x":51,"y":103,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -187,6 +250,6 @@
 	"format": "RGBA8888",
 	"size": {"w":128,"h":128},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:fc1064abcc40a4edf62f103fc0410717:3178508af5bf5ececffa1c7beb3592ad:bb279eef75da4282bcac42cc68301ce2$"
+	"smartupdate": "$TexturePacker:SmartUpdate:1f0c24e36174ec9f4a01312f5c0f44a1:9f0195c1868380bba564eed47fa745a3:bb279eef75da4282bcac42cc68301ce2$"
 }
 }
