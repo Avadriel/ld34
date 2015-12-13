@@ -97,6 +97,7 @@ class PlayStage extends Stage implements JobDelegate{
 
 		for (var i = 0; i < this.plants.length; i++){
 			scene.addPlane(this.plants[i].plane);
+			this.plants[i].render(scene);
 		}
 
 		for (var i = 0; i < this.gardeners.length; i++){
@@ -144,7 +145,7 @@ class PlayStage extends Stage implements JobDelegate{
 		}
 
 		//if tile is pressed
-		if(nx <= (480/32-3){
+		if(nx <= (480/32-3)){
 			var tileInfo = this.infoLookup[nx + ny * (640 / 32)];
 			this.hud.mode = HudMode.NORMAL;
 			this.hud.resetActionButtons();
@@ -168,7 +169,7 @@ class PlayStage extends Stage implements JobDelegate{
 		}
 
 		if (type == JobType.PLANT) {
-			var plant = new EggPlant(this.spritesheet, nx * 32 + 16, ny * 32 + 16);
+			var plant = new EggPlant(this.schedule,this.spritesheet, nx * 32 + 16, ny * 32 + 16);
 			this.plants.push(plant);
 		}
 	}

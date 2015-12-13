@@ -1,6 +1,6 @@
 {"frames": {
 
-"dirt_0":
+"chicken_idle_0":
 {
 	"frame": {"x":100,"y":1,"w":16,"h":16},
 	"rotated": false,
@@ -9,7 +9,7 @@
 	"sourceSize": {"w":16,"h":16},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"egg":
+"chicken_idle_1":
 {
 	"frame": {"x":67,"y":18,"w":16,"h":16},
 	"rotated": false,
@@ -18,7 +18,7 @@
 	"sourceSize": {"w":16,"h":16},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"egg_0":
+"chicken_idle_2":
 {
 	"frame": {"x":34,"y":34,"w":16,"h":16},
 	"rotated": false,
@@ -27,7 +27,7 @@
 	"sourceSize": {"w":16,"h":16},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"egg_1":
+"dirt_0":
 {
 	"frame": {"x":84,"y":18,"w":16,"h":16},
 	"rotated": false,
@@ -36,7 +36,7 @@
 	"sourceSize": {"w":16,"h":16},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"egg_2":
+"egg":
 {
 	"frame": {"x":101,"y":18,"w":16,"h":16},
 	"rotated": false,
@@ -45,7 +45,7 @@
 	"sourceSize": {"w":16,"h":16},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"gardener_idle_0":
+"egg_0":
 {
 	"frame": {"x":51,"y":35,"w":16,"h":16},
 	"rotated": false,
@@ -54,7 +54,7 @@
 	"sourceSize": {"w":16,"h":16},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"gardener_idle_1":
+"egg_1":
 {
 	"frame": {"x":34,"y":51,"w":16,"h":16},
 	"rotated": false,
@@ -63,7 +63,7 @@
 	"sourceSize": {"w":16,"h":16},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"gardener_idle_2":
+"egg_2":
 {
 	"frame": {"x":68,"y":35,"w":16,"h":16},
 	"rotated": false,
@@ -72,9 +72,45 @@
 	"sourceSize": {"w":16,"h":16},
 	"pivot": {"x":0.5,"y":0.5}
 },
-"grass_0":
+"eggparticle":
+{
+	"frame": {"x":1,"y":117,"w":8,"h":8},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":8,"h":8},
+	"sourceSize": {"w":8,"h":8},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"gardener_idle_0":
 {
 	"frame": {"x":85,"y":35,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"gardener_idle_1":
+{
+	"frame": {"x":102,"y":35,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"gardener_idle_2":
+{
+	"frame": {"x":34,"y":68,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16},
+	"pivot": {"x":0.5,"y":0.5}
+},
+"grass_0":
+{
+	"frame": {"x":34,"y":85,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -137,7 +173,7 @@
 },
 "white":
 {
-	"frame": {"x":102,"y":35,"w":16,"h":16},
+	"frame": {"x":34,"y":102,"w":16,"h":16},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
@@ -151,6 +187,6 @@
 	"format": "RGBA8888",
 	"size": {"w":128,"h":128},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:6440e9638a086316e411cdb0b750132e:9d7d70e7884fab202eeb60ba37d2914c:bb279eef75da4282bcac42cc68301ce2$"
+	"smartupdate": "$TexturePacker:SmartUpdate:fc1064abcc40a4edf62f103fc0410717:3178508af5bf5ececffa1c7beb3592ad:bb279eef75da4282bcac42cc68301ce2$"
 }
 }

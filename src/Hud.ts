@@ -30,7 +30,7 @@ class Hud {
 		this.shovelButton = new ShovelButton(16, 480-16, this.spritesheet);
 
 		this.seeds = [
-			new Plane(16 + 32, 480 - 16, 30, 16, 16, Color.WHITE, spritesheet.getUVFromName("plantegg"));
+			new Plane(16 + 32, 480 - 16, 30, 16, 16, Color.WHITE, spritesheet.getUVFromName("plantegg"))
 		]
 
 		//labels
