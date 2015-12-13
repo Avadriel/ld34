@@ -1,7 +1,6 @@
 /// <reference path="Entity.ts" />
 /// <reference path="Color.ts" />
 
-
 class Tile extends Entity {
 	build: boolean = false;
 	

@@ -9,18 +9,19 @@
 /// <reference path="PlantJob.ts" />
 /// <reference path="Schedule.ts" />
 /// <reference path="ShovelButton.ts" />
-
-
+/// <reference path="Hud.ts" />
 
 
 class PlayStage extends Stage implements JobDelegate{
 
+	infoLookup: Array<Info> = new Array();
 	gardeners: Array<Gardener> = new Array();
 	tiles: Array<Tile> = new Array();
 	mode: JobType = JobType.NONE;
 	plants: Array<Plant> = new Array();
 	schedule: Schedule;
-	shovel: ShovelButton;
+	bottom: Plane;
+	hud: Hud;
 
 
 	constructor() {
@@ -30,19 +31,23 @@ class PlayStage extends Stage implements JobDelegate{
 	init(){
 		this.schedule = new Schedule();
 		//init map
+		this.infoLookup = new Array((480/32)*(640/32));
 		for (var y = 0; y < (480 / 32); y++){
 			for (var x = 0; x < (640 / 32); x++){
 				this.tiles.push(new Tile(this.spritesheet, "grass_0", 16+x*32, 16+y*32));
+				this.infoLookup[x+y*(640/32)] = Info.GRASS;
 			}
 		}
 
+		this.infoLookup[2] = Info.DIRT;
 
-		this.shovel = new ShovelButton(640-16, 16, this.spritesheet);
+		this.hud = new Hud(this, this.spritesheet);
+		
 		this.gardeners.push(new Gardener(16, 16, this.spritesheet));
 		this.gardeners.push(new Gardener(16, 16, this.spritesheet));
 	}
 
-	update() {
+	update(){
 		for (var i = 0; i < this.tiles.length; i++) {
 			if (!this.tiles[i].build) {
 				this.tiles[i].plane.setColor(Color.WHITE);	
@@ -74,25 +79,17 @@ class PlayStage extends Stage implements JobDelegate{
 
 		this.schedule.update();
 
-
-		//Hover button
-		this.shovel.plane.setColor(Color.WHITE);
-		if (this.mouseX >= (640 / 32) - 1 && this.mouseY == 0 || this.mode == JobType.PLOW){
-			this.shovel.plane.setColor(Color.GREY);
+		var nx = Math.floor(this.mouseX / 32);
+		var ny = Math.floor(this.mouseY /  32);
+		
+		this.hud.info = Info.NONE;
+		if (this.mouseY <= (480 / 32) - 3) {
+			var t = this.infoLookup[nx + ny * (640 / 32)];
+			console.log(t);
+			this.hud.info = t;
 		}
 
-		/*this.menubutton.setColor(Color.WHITE);
-		this.eggbutton.setColor(Color.WHITE);
-		if (this.mouseX >= (640 / 32)-3 && this.mouseY == 0 || this.mode == JobType.PLOW) {
-			this.menubutton.setColor(Color.GREY);
-		}
-
-		if (this.mouseX >= (640 / 32)-3 && this.mouseY == 1 || this.mode == JobType.PLANT) {
-			this.eggbutton.setColor(Color.GREY);
-		}*/
-
-		this.shovel.update();
-
+		this.hud.update();
 	}
 
 	render(scene: Scene) {
@@ -108,7 +105,7 @@ class PlayStage extends Stage implements JobDelegate{
 			scene.addPlane(this.gardeners[i].plane);
 		}
 
-		scene.addPlane(this.shovel.plane);
+		this.hud.render(scene);
 	}
 
 	mouseX: number = 0;
@@ -121,6 +118,11 @@ class PlayStage extends Stage implements JobDelegate{
 		var ny = Math.floor(y / 32);
 		this.mouseX = nx;
 		this.mouseY = ny;
+
+		this.hud.resetActionButtons();
+		if(ny == (480/32)-1){
+			this.hud.hoverOnIndex(nx);
+		}
 	}
 
 	mouseClick(e:MouseEvent){
@@ -128,13 +130,20 @@ class PlayStage extends Stage implements JobDelegate{
 		var y = e.offsetY;
 		var nx = Math.floor(x / 32);
 		var ny = Math.floor(y /  32);
+
 		if (this.mode == JobType.PLOW) {
 			var newtile = new Tile(this.spritesheet, "dirt_0", nx * 32 + 16, ny * 32 + 16);
 			newtile.plane.setColor(Color.GREY);
 			newtile.build = true;
 			this.tiles[nx + ny * (640 / 32)] = newtile;
+			this.infoLookup[nx + ny * (640 / 32)] = 2;
+
 			this.schedule.addJob(new PlowJob(this.mouseX * 32 + 16, this.mouseY * 32 + 16, this));
 			this.mode = JobType.NONE;
+		}
+
+		if (ny == (480/32)-1){
+			this.hud.clickOnIndex(nx);
 		}
 
 		if (this.mouseX >= (640 / 32) - 1 && this.mouseY == 0 && this.mode == JobType.NONE){
@@ -153,7 +162,12 @@ class PlayStage extends Stage implements JobDelegate{
 		if(type == JobType.PLANT){
 			var plant = new EggPlant(this.spritesheet, nx * 32 + 16, ny * 32 + 16);
 			this.plants.push(plant);
-			console.log(this.plants.length)
+		}
+	}
+
+	hudAction(x: number, y: number, type: HudAction){
+		if(type == HudAction.PLOW){
+			this.mode = JobType.PLOW;
 		}
 	}
 

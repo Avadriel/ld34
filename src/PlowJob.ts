@@ -27,7 +27,6 @@ class PlowJob extends Job {
 				this.finished();
 		}else{
 			var actualJob = this.jobs[this.jobIndex];
-			console.log(actualJob);
 			actualJob.gardener = this.gardener;
 			actualJob.update();
 
