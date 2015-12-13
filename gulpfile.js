@@ -2,6 +2,10 @@ var gulp = require("gulp");
 var connect = require("gulp-connect");
 var ts = require('gulp-typescript');
 
+gulp.task("music", function(){
+	gulp.src("src/res/**/*.mp3").pipe(gulp.dest("tmp/"));
+})
+
 gulp.task("html", function(){
 	gulp.src("src/**/*.html").pipe(gulp.dest("tmp/")).pipe(connect.reload());
 });
@@ -41,4 +45,4 @@ gulp.task("pages", function(){
 	gulp.src("lib/**/*.js").pipe(gulp.dest("lib/"));
 })
 
-gulp.task("default", ["html", "ts", "img", "lib", "watch", "serve"]);
+gulp.task("default", ["music","html", "ts", "img", "lib", "watch", "serve"]);
