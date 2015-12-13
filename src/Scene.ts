@@ -21,6 +21,10 @@ class Scene {
 	}
 
 	addPlane(plane:Plane){
+		if(this.vertexCount*9+plane.v.length*9 > this.data.length){
+			console.log("draw call");
+			this.render();
+		}
 		var j = this.vertexCount*9;
 		for (var i = 0; i < plane.v.length; i++){
 			var vertex = plane.v[i];

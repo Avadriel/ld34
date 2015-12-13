@@ -38,12 +38,11 @@ class Game {
 	}
 
 	start = () => {
-		this.scene = new Scene(this.gl, this.shader, this.texture, 50000*3);
-
+		this.scene = new Scene(this.gl, this.shader, this.texture, 10000*9);
+		this.scene.mvp = this.mvp;
 		this.stage = new PlayStage();
 		this.stage.spritesheet = this.spritesheet;
 		this.stage.init();
-
 
 		this.loop();
 	}
@@ -70,7 +69,7 @@ class Game {
 
 		this.gl.clear(this.gl.COLOR_BUFFER_BIT);
 
-		this.scene.mvp = this.mvp;
+		
 		this.stage.render(this.scene);
 		this.scene.render();
 
