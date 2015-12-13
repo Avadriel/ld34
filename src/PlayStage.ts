@@ -22,9 +22,10 @@ class PlayStage extends Stage implements JobDelegate{
 	schedule: Schedule;
 	bottom: Plane;
 	hud: Hud;
+	focusX: number;
+	focusY: number;
 
-
-	constructor() {
+		constructor() {
 		super();
 	}
 
@@ -38,8 +39,6 @@ class PlayStage extends Stage implements JobDelegate{
 				this.infoLookup[x+y*(640/32)] = Info.GRASS;
 			}
 		}
-
-		this.infoLookup[2] = Info.DIRT;
 
 		this.hud = new Hud(this, this.spritesheet);
 		
@@ -79,13 +78,12 @@ class PlayStage extends Stage implements JobDelegate{
 
 		this.schedule.update();
 
-		var nx = Math.floor(this.mouseX / 32);
-		var ny = Math.floor(this.mouseY /  32);
+		var nx = Math.floor(this.mouseX);
+		var ny = Math.floor(this.mouseY);
 		
 		this.hud.info = Info.NONE;
-		if (this.mouseY <= (480 / 32) - 3) {
+		if (this.mouseY <= (480/32-3)) {
 			var t = this.infoLookup[nx + ny * (640 / 32)];
-			console.log(t);
 			this.hud.info = t;
 		}
 
@@ -136,19 +134,28 @@ class PlayStage extends Stage implements JobDelegate{
 			newtile.plane.setColor(Color.GREY);
 			newtile.build = true;
 			this.tiles[nx + ny * (640 / 32)] = newtile;
-			this.infoLookup[nx + ny * (640 / 32)] = 2;
 
 			this.schedule.addJob(new PlowJob(this.mouseX * 32 + 16, this.mouseY * 32 + 16, this));
 			this.mode = JobType.NONE;
 		}
 
 		if (ny == (480/32)-1){
-			this.hud.clickOnIndex(nx);
+			this.hud.clickOnIndex(nx, this.focusX, this.focusY);
 		}
 
-		if (this.mouseX >= (640 / 32) - 1 && this.mouseY == 0 && this.mode == JobType.NONE){
-			this.mode = JobType.PLOW;
+		//if tile is pressed
+		if(nx <= (480/32-3){
+			var tileInfo = this.infoLookup[nx + ny * (640 / 32)];
+			this.hud.mode = HudMode.NORMAL;
+			this.hud.resetActionButtons();
+			if(tileInfo == Info.DIRT){
+				this.focusX = nx * 32 + 16;
+				this.focusY = ny * 32 + 16;
+				this.hud.mode = HudMode.PLANT;
+			}
 		}
+
+
 	}
 
 	finishedJob(x, y, type: JobType) {
@@ -157,9 +164,10 @@ class PlayStage extends Stage implements JobDelegate{
 		if(type == JobType.PLOW){
 			this.tiles[nx + ny * (640 / 32)].plane.setColor(Color.WHITE);
 			this.tiles[nx + ny * (640 / 32)].build = false;
+			this.infoLookup[nx + ny * (640 / 32)] = Info.DIRT;
 		}
 
-		if(type == JobType.PLANT){
+		if (type == JobType.PLANT) {
 			var plant = new EggPlant(this.spritesheet, nx * 32 + 16, ny * 32 + 16);
 			this.plants.push(plant);
 		}
@@ -168,6 +176,10 @@ class PlayStage extends Stage implements JobDelegate{
 	hudAction(x: number, y: number, type: HudAction){
 		if(type == HudAction.PLOW){
 			this.mode = JobType.PLOW;
+		}
+
+		if(type == HudAction.PLANTEGG){
+			this.schedule.addJob(new PlantJob(x, y, this));
 		}
 	}
 
