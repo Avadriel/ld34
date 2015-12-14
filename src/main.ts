@@ -13,5 +13,5 @@ loader.load(function(loader, resources){
 	game.loadSpritesheet(resources.spritesheet.data);
 });
 
-
+	
 loader.on('complete', game.start);

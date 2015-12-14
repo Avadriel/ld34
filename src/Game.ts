@@ -31,7 +31,7 @@ class Game {
 	init = () => {
 		this.mvp = createOrthographicMatrix(0, 640, 0, 480, -1, -1000);
 		this.shader = new Shader(this.gl, document.getElementById("vs").innerText, document.getElementById("fs").innerText);
-		var clearColor = Color.PURPLE;
+		var clearColor = new Color(0xff708c58);
 		this.gl.clearColor(clearColor.r, clearColor.g, clearColor.b, clearColor.a);
 		this.gl.enable(this.gl.BLEND);
 		this.gl.blendFunc(this.gl.SRC_ALPHA, this.gl.ONE_MINUS_SRC_ALPHA);
