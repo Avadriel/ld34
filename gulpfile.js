@@ -43,6 +43,7 @@ gulp.task("pages", function(){
 	gulp.src("src/res/*.json").pipe(gulp.dest("res/"));
 	gulp.src("src/**/*.ts").pipe(ts({out:"game.js"})).pipe(gulp.dest(""));
 	gulp.src("lib/**/*.js").pipe(gulp.dest("lib/"));
+	gulp.src("src/res/**/*.mp3").pipe(gulp.dest("/"));
 })
 
 gulp.task("default", ["music","html", "ts", "img", "lib", "watch", "serve"]);
